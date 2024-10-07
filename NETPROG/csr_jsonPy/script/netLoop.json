@@ -1,0 +1,27 @@
+{
+    "device": {
+        "host": "192.168.102.5",
+        "username": "admin",
+        "password": "pass",
+        "device_type": "cisco_ios"
+    },
+    "loopback1_config": {
+        "interface": "Loopback1",
+        "new_ip": "1.1.1.1"
+    },
+    "loopback2_config": {
+        "interface": "Loopback2",
+        "new_ip": "2.2.2.2"
+    },
+    "net_config": {
+        "default": "0.0.0.0",
+        "gateway": "192.168.108.2"
+    },
+    "line_and_ip": {
+        "subnet_mask": "255.255.255.255",
+        "desc" : "configured using python and json",
+        "turn_on": "no shut",
+        "ex": "exit"
+    },
+    "new_hostname": "jsonNpython"
+}
