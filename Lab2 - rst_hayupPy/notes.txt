@@ -52,4 +52,7 @@ TextFSM Templates - only for properly formatting show commands to be stored as a
 					Variable value : the path file of the templates folder in the ntc_templates\ntc_templates
 						if you're still having trouble installing here's a link: https://ntc-templates.readthedocs.io/en/latest/admin/install/
 	
-	
+
+
+Error:
+Latest python version needs string to alternate between double quotes and single quotes
