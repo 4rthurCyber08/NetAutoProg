@@ -1,0 +1,144 @@
+Requirements for Activity
+1. CSR1000V
+2. VMware
+3. VScode
+4. Install VScode Extensions
+
+	VScode Extension					Publisher
+	___________________________________________________
+	Github CoPilot  					Github.com
+	autoDocstring - Python Docstring  	Nils Werner
+	Python Snippets  					Ferhat Yalçın
+	AREPL for python  					Almenon
+	Better Comments  					Aaron Bond			
+	Python Indent						Kevin Rose
+	Python Test Explorer				Little Fox Team
+	___________________________________________________
+
+4. Python
+5. SecureCRT
+6. TextFSM Templates
+		How to install TextFSM Templates:
+		 1. create a folder in a directory of your choice
+		 2. In that folder,
+				git clone https://github.com/networktocode/ntc-templates
+		 3. In Environment Variables,
+				Create a new variable
+					Variable name : NET_TEXTFSM
+					Variable value : the path file of the templates folder in the ntc_templates\ntc_templates
+						if you're still having trouble installing here's a link: https://ntc-templates.readthedocs.io/en/latest/admin/install/
+				
+****
+
+Step 1 - Upgrade Libraries
+Create a folder then open it on VScode
+
+	create File: update.py
+		
+	*Refer to updateLib.py
+	
+Step 2 - Preconfig VMware & CSR1000v
+Open VMware
+ Edit -> Virtual Network Editor
+	VMnet 2 (Create/Configure)
+		VMnet Information: *Host Only
+			Check: Connect a host virtual adapter to this network
+			UnCheck: Use local DHCP service to distribute IP addresses to VMs
+		Subnet IP: 192.168.102.0
+		Subnet Mask: /24
+		
+	VMNET 3 (Create/Configure)
+		VMnet Information: *Host Only
+			Check: Connect a host virtual adapter to this network
+			UnCheck: Use local DHCP service to distribute IP addresses to VMs
+		Subnet IP: 192.168.103.0
+		Subnet Mask: /24
+		
+	VMNET 8 (Create/Configure)
+		VMnet Information: *NAT
+			Check: Connect a host virtual adapter to this network
+			Check: Use local DHCP service to distribute IP addresses to VMs
+		Subnet IP: 192.168.108.0
+		Subnet Mask: /24
+
+Open CSR1000v
+ File -> Open : CSR1000v.ova
+	Name: apps00
+	
+	apps00 Settings
+	NetAdapter		: NAT
+	NetAdapter 2 	: vmnet2
+	NetAdapter 3 	: vmnet3
+	___________________________________________________
+	
+	@apps00
+	conf t
+	 no logging console
+	 username admin privilege 15 secret pass 
+	 line vty 0 14
+	  login local
+	  exec-timeout 0 0
+	  transport input all
+	  exit
+	 int gi 2
+	  ip add 192.168.102.5 255.255.255.0
+	  no shut
+	  desc configured manually
+	  exit
+	 do sh ip int br
+	 do wr
+	
+	!use only if router keeps spamming %Error opening tftp
+	conf t
+	 no service config
+	
+Open SecureCRT
+Telnet to apps00 using the configured ip address: 192.168.102.5
+	!verify ip addresses
+	 !there should be no ip addresses for interfaces Gi 1 & 3
+	sh ip int br
+
+	!verify internet
+	 !there should be no internet
+	ping 8.8.8.8
+	 
+
+
+Task 1 - Create a Python Script
+Open VScode -> File -> New File : giveIP.py
+
+Task 1 - add IP from python
+	Create a python script that will run and give these commands to apps00
+		hostname pythonOnly
+		int gi 1
+		 ip add 192.168.108.5 255.255.255.0
+		 no shut
+		 desc configured from python
+		 exit
+		int gi 3
+		 ip add 192.168.103.5 255.255.255.0
+		 no shut
+		 desc configured from python
+		 
+	Refer to: giveIP.py
+	
+Task 2 - add loopbacks and internet using python and json
+	Create anothe python script that utilizes a json file to output these commands to apps00
+		hostname jsonNpython
+		int Loopback1
+		 ip add 1.1.1.1 255.255.255.255
+		 desc configured using python with json
+		 no shut
+		 exit
+		int Loopback2
+		 ip add 2.2.2.2 255.255.255.255
+		 desc configured using python with json
+		 no shut
+		 exit
+		ip route 0.0.0.0 0.0.0.0 192.168.108.2
+	
+	Refer to: giveNETandLoopbacks.py
+
+Task 3 - retrieve show command outputs then write them on a json file.
+
+	Refer to: getShCommands.py

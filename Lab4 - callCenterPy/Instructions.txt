@@ -1,0 +1,47 @@
+Find and Replace
+ctrl + h
+  Find = $mon1tor$
+  Replace = Your Monitor Number
+
+---
+
+Manual Config
+For SSH connection:
+
+@Call Manager
+conf t
+ enable secret pass
+ service password-encryption
+ no logging console
+ no ip domain-lookup
+ username admin privilege 15 secret pass
+ line console 0
+  exec-timeout 0 0
+  no login
+ line vty 0 14
+  transport input all
+  login local
+ int vlan 1
+  no shut
+  ip add 10.$mon1tor$.1.4 255.255.255.0
+  description MGMTDATA from Python
+
+
+#@Create Keys for SSH
+conf t
+ ip domain-name callcenterpy.com
+ crypto key generate rsa
+    512 -> 2048
+ ip ssh version 2
+
+---
+
+#@Fix IVRS (No configure terminal)
+#@Check Files
+sh flash: | inc .ivr
+more flash:ivr.txt
+
+config t
+ application
+  no service callqueue flash:app-b-acd-2.1.2.2.tcl
+  no service rivanaa flash:app-b-acd-aa-2.1.2.2.tcl
