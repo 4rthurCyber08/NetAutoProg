@@ -39,7 +39,11 @@ conf t
     512 -> 2048
  ip ssh version 2
 
----
+
+//After enabling SSH, run callManager.py
+
+
+---Extra
 
 #@Fix IVRS (No configure terminal)
 #@Check Files
