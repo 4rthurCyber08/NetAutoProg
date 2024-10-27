@@ -1,0 +1,130 @@
+{
+   "p1_device": {
+      "host": "192.168.108.143",
+      "username": "admin",
+      "password": "pass",
+      "secret": "pass",
+      "device_type": "cisco_ios_telnet",
+      "port": 2001
+   },
+   "p2_device": {
+      "host": "192.168.108.143",
+      "username": "admin",
+      "password": "pass",
+      "secret": "pass",
+      "device_type": "cisco_ios_telnet",
+      "port": 2002
+   },
+   "a1_device": {
+      "host": "192.168.108.143",
+      "username": "admin",
+      "password": "pass",
+      "secret": "pass",
+      "device_type": "cisco_ios_telnet",
+      "port": 2003
+   },
+   "a2_device": {
+      "host": "192.168.108.143",
+      "username": "admin",
+      "password": "pass",
+      "secret": "pass",
+      "device_type": "cisco_ios_telnet",
+      "port": 2004
+   },
+   "s1_device": {
+      "host": "192.168.108.143",
+      "username": "admin",
+      "password": "pass",
+      "secret": "pass",
+      "device_type": "cisco_ios_telnet",
+      "port": 2005
+   },
+   "d1_device": {
+      "host": "192.168.108.143",
+      "username": "admin",
+      "password": "pass",
+      "secret": "pass",
+      "device_type": "cisco_ios_telnet",
+      "port": 2006
+   },
+   "d2_device": {
+      "host": "192.168.108.143",
+      "username": "admin",
+      "password": "pass",
+      "secret": "pass",
+      "device_type": "cisco_ios_telnet",
+      "port": 2007
+   },
+   "s2_device": {
+      "host": "192.168.108.143",
+      "username": "admin",
+      "password": "pass",
+      "secret": "pass",
+      "device_type": "cisco_ios_telnet",
+      "port": 2008
+   },
+   "r4_device": {
+      "host": "192.168.108.143",
+      "username": "admin",
+      "password": "pass",
+      "secret": "pass",
+      "device_type": "cisco_ios_telnet",
+      "port": 2009
+   },
+   "r3_device": {
+      "host": "192.168.108.143",
+      "username": "admin",
+      "password": "pass",
+      "secret": "pass",
+      "device_type": "cisco_ios_telnet",
+      "port": 2010
+   },
+   "r2_device": {
+      "host": "192.168.108.143",
+      "username": "admin",
+      "password": "pass",
+      "secret": "pass",
+      "device_type": "cisco_ios_telnet",
+      "port": 2011
+   },
+   "r1_device": {
+      "host": "192.168.108.143",
+      "username": "admin",
+      "password": "pass",
+      "secret": "pass",
+      "device_type": "cisco_ios_telnet",
+      "port": 2012
+   },
+   "i3_device": {
+      "host": "192.168.108.143",
+      "username": "admin",
+      "password": "pass",
+      "secret": "pass",
+      "device_type": "cisco_ios_telnet",
+      "port": 2013
+   },
+   "i2_device": {
+      "host": "192.168.108.143",
+      "username": "admin",
+      "password": "pass",
+      "secret": "pass",
+      "device_type": "cisco_ios_telnet",
+      "port": 2014
+   },
+   "i1_device": {
+      "host": "192.168.108.143",
+      "username": "admin",
+      "password": "pass",
+      "secret": "pass",
+      "device_type": "cisco_ios_telnet",
+      "port": 2015
+   },
+   "i4_device": {
+      "host": "192.168.108.143",
+      "username": "admin",
+      "password": "pass",
+      "secret": "pass",
+      "device_type": "cisco_ios_telnet",
+      "port": 2016
+   }
+}
