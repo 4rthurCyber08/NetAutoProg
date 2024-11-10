@@ -1,0 +1,3 @@
+To test
+
+isolate ncrypt and dcrypt and other to-be-encrypted files in a folder
