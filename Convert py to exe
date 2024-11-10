@@ -1,0 +1,9 @@
+1. Install pyinstaller
+
+@powershell
+pip install pyinstaller
+
+2. Run command
+
+@terminal with directory pointing to where the python file is located
+pyinstaller pythonFileName.extension --onefile
