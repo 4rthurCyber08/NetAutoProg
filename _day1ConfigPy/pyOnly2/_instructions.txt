@@ -1,0 +1,114 @@
+
+Find and Replace (ctrl+h): 
+$monitorNum$ = Your monitor number
+
+
+STEP 1 - Add routing to PC
+@command prompt
+route add 10.0.0.0 mask 255.0.0.0 10.$monitorNum$.1.4
+route add 200.0.0.0 mask 255.255.255.0 10.$monitorNum$.1.4
+
+
+STEP 2 - Enable SSH
+For an SSH connection to be established, the device must have:
+    -a non-default hostname         [hostname coreBaba$monitorNum$]
+    -a domain name                  [ip domain name day1lab.com]
+    -a local user account           [username admin privilege 15 secret pass]
+    -generated crypto keys          [crypto key generate rsa modulus 1024]
+    -SSH enabled                    [ip ssh version 2]
+    -enable remote access           [transport input all]
+    -enable remote user/pass login  [login local]
+
+Extra lines
+    -enable secret                  [enable secret pass]
+    -password encryption            [service password-encryption]
+    -no logs                        [no logging console]
+    -no domain lookups              [no ip domain-lookup]
+    -remote password                [password pass]
+    -no timeout                     [exec-timeout 0 0]
+
+@coreBaba
+conf t
+ hostname coreBaba-$monitorNum$
+ enable secret pass
+ service password-encryption
+ no logging console
+ no ip domain-lookup
+ ip domain name day1lab.com
+ username admin privilege 15 secret pass
+ crypto key generate rsa modulus 1024
+ ip ssh version 2
+
+ line vty 0 14
+  password pass
+  transport input all
+  login local
+  exec-timeout 0 0
+
+@cucm
+conf t
+ hostname cucm-$monitorNum$
+ enable secret pass
+ service password-encryption
+ no logging console
+ no ip domain-lookup
+ ip domain name day1lab.com
+ username admin privilege 15 secret pass
+ crypto key generate rsa modulus 1024
+ ip ssh version 2
+
+ line vty 0 14
+  password pass
+  transport input all
+  login local
+  exec-timeout 0 0
+
+@edge
+conf t
+ hostname edge-$monitorNum$
+ enable secret pass
+ service password-encryption
+ no logging console
+ no ip domain-lookup
+ ip domain name day1lab.com
+ username admin privilege 15 secret pass
+ crypto key generate rsa modulus 1024
+ ip ssh version 2
+
+ line vty 0 14
+  password pass
+  transport input all
+  login local
+  exec-timeout 0 0
+
+
+
+STEP 3 - Add ip address and routing to device
+@coreBaba
+conf t
+ int vlan 1
+  no shut
+  ip add 10.$monitorNum$.1.4 255.255.255.0
+  desc mgmtData-configuredManually
+  exit
+ ip routing
+ ip route 0.0.0.0 0.0.0.0 10.$monitorNum$.$monitorNum$.1
+
+@cucm
+conf t
+ int fa0/0
+  no shut
+  ip add 10.$monitorNum$.100.8 255.255.255.0
+  exit
+ ip routing
+ ip route 0.0.0.0 0.0.0.0 10.$monitorNum$.100.4
+
+@edge
+conf t
+ int gi 0/0/0
+  ip add 10.$monitorNum$.$monitorNum$.1 255.255.255.0
+  no shut
+  exit
+ ip routing
+ ip route 10.$monitorNum$.0.0 255.255.0.0 10.$monitorNum$.$monitorNum$.4
+ exit
