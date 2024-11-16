@@ -1,0 +1,8 @@
+@coreBABA
+show mac address-table
+
+
+Camera Fa0/6: pasteCamera6MacHere
+Camera Fa0/8: pasteCamera8MacHere
+Ephone Fa0/5: pasteEphone1MacHere
+Ephone Fa0/7: pasteEphone2MacHere
