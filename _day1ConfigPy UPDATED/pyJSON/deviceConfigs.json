@@ -1,0 +1,26 @@
+{
+    "coreBaba": {
+        "password": "pass",
+        "description": "-configuredFromPython"
+        
+    },
+
+    "dhcp": {
+        "dataPool": "POOLDATA",
+        "dataDomain": "MGMTDATA.COM",
+        "wifiPool": "POOLWIFI",
+        "wifiDomain": "WIFIDATA.COM",
+        "camPool": "POOLCCTV",
+        "camDomain": "CCTVDATA.COM",
+        "voicePool": "POOLVOICE",
+        "voiceDomain": "VOICEDATA.COM"
+    },
+
+    "callManager": {
+
+    },
+
+    "edgeRouter": {
+
+    }
+}

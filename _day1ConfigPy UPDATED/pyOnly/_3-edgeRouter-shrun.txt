@@ -1,0 +1,249 @@
+Building configuration...
+
+
+Current configuration : 5313 bytes
+!
+! Last configuration change at 02:45:11 UTC Sun Nov 17 2024 by admin
+!
+version 16.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+platform qfp utilization monitor load 80
+platform punt-keepalive disable-kernel-core
+!
+hostname edge-61
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+no logging console
+enable secret 5 $1$msV2$uBnYh4eqNengwXsvqshHg0
+!
+no aaa new-model
+!
+no ip domain lookup
+ip domain name autoday1.com
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-3241524136
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3241524136
+ revocation-check none
+ rsakeypair TP-self-signed-3241524136
+!
+!
+crypto pki certificate chain TP-self-signed-3241524136
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 33323431 35323431 3336301E 170D3234 31313137 30313232 
+  35315A17 0D333030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 32343135 
+  32343133 36308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 0100A947 6FB49FE4 FCAF3F6F CF8CBB33 7284E516 E99D3904 0B301F92 
+  E294315E 0DE88345 02CAD5D6 5F9B7F2E 2E920F7E FD5EEAEA CA935F3F 6324F985 
+  17A433DB D2F540BA D72EE03B 94D0457D 137FBAC3 89B0C384 6EB9A48B 8F42A195 
+  83BDECE9 5E314F73 56DCC033 93E9000B 5DCD3AE1 5AAFF0D9 B13034B1 FCF76949 
+  3FEC2B40 1ACA7237 B2AC67C7 3FEF9A43 0B781705 9A06D5D6 659837A2 EC94CA10 
+  00398B7F 9DF3D208 4BD29F5F AD27A292 282AD8A0 85E38BA1 35DBE22E 7AB268CF 
+  E85D2D4B 46F631B4 3E718F04 8EA93890 4C4F3B79 9F70276E 76CC5C24 8A7F426C 
+  8457588E 44BE7976 795EE5BB 04436010 6471DF39 8B098225 05D4B924 3EA40608 
+  8F2329EB F1910203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 14C65307 243798B9 3CD21560 ECB2777D 544530E4 
+  83301D06 03551D0E 04160414 C6530724 3798B93C D21560EC B2777D54 4530E483 
+  300D0609 2A864886 F70D0101 05050003 82010100 3CF7533E 3E10E530 BBED029F 
+  24F6964C E6666A5A BCB0FBBC 92CB9D5B 7F0D4FF7 917E5A71 BC18B0C1 E19B6143 
+  C0DCE711 8A668723 2860BDA3 5A0957AC C54949B8 37D0AD40 10550706 4371B1A7 
+  ED2CA00B 56D7E5BF E5B3A73C AEE84163 390C72EA 40450A37 98B2E6DC 741F1D6F 
+  2CEA40B1 840684A4 72D1D84A CB703396 E1EBC8A8 399E23BB 47BD9045 4A0A3AA6 
+  1BA4D66F 461BF6F8 D6B614FA 8B7D5230 3C24D9DE 4194D814 0351AE4E 1FA5F17F 
+  CD84F805 7F7613D3 6DD91638 EF1D7122 52FD53CF F758A231 915BE236 909425FB 
+  D82FD828 A30DE999 D8DA6B3C 071A2984 99F79842 411E422D B7ADC8CF 50C4A544 
+  40565046 0D77051F FD7289DB 394D09DD 8F585E9F
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+!
+voice-card 0/1
+ no watchdog
+!
+license udi pid ISR4321/K9 sn FDO221612QE
+license accept end user agreement
+license boot suite AdvUCSuiteK9
+license boot level securityk9
+no license smart enable
+diagnostic bootup level minimal
+!
+spanning-tree extend system-id
+!
+!
+!
+username admin privilege 15 secret 5 $1$83LA$j02ee/m8C/kxf9DBtrHZF/
+!
+redundancy
+ mode none
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback0
+ description VIRTUALIP
+ ip address 61.0.0.1 255.255.255.255
+!
+interface GigabitEthernet0/0/0
+ ip address 10.61.61.1 255.255.255.0
+ negotiation auto
+!
+interface GigabitEthernet0/0/1
+ description OUTSIDE
+ ip address 200.0.0.61 255.255.255.0
+ negotiation auto
+!
+interface Service-Engine0/1/0
+ no ip address
+!
+interface GigabitEthernet0/2/0
+ negotiation auto
+!
+interface GigabitEthernet0
+ vrf forwarding Mgmt-intf
+ no ip address
+ shutdown
+ negotiation auto
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+ip tftp source-interface GigabitEthernet0
+ip route 10.11.0.0 255.255.0.0 200.0.0.11
+ip route 10.12.0.0 255.255.0.0 200.0.0.12
+ip route 10.21.0.0 255.255.0.0 200.0.0.21
+ip route 10.22.0.0 255.255.0.0 200.0.0.22
+ip route 10.31.0.0 255.255.0.0 200.0.0.31
+ip route 10.32.0.0 255.255.0.0 200.0.0.32
+ip route 10.41.0.0 255.255.0.0 200.0.0.41
+ip route 10.42.0.0 255.255.0.0 200.0.0.42
+ip route 10.51.0.0 255.255.0.0 200.0.0.51
+ip route 10.52.0.0 255.255.0.0 200.0.0.52
+ip route 10.61.0.0 255.255.0.0 10.61.61.4
+ip route 10.62.0.0 255.255.0.0 200.0.0.62
+ip route 10.71.0.0 255.255.0.0 200.0.0.71
+ip route 10.72.0.0 255.255.0.0 200.0.0.72
+ip route 10.72.0.0 255.255.0.0 10.72.72.4
+ip route 10.81.0.0 255.255.0.0 200.0.0.81
+ip route 10.82.0.0 255.255.0.0 200.0.0.82
+!
+ip ssh version 2
+!
+!
+!
+!
+!
+control-plane
+!
+!
+voice-port 0/1/0
+!
+voice-port 0/1/1
+!
+voice-port 0/1/2
+!
+voice-port 0/1/3
+!
+voice-port 0/1/4
+!
+voice-port 0/1/5
+!
+mgcp behavior rsip-range tgcp-only
+mgcp behavior comedia-role none
+mgcp behavior comedia-check-media-src disable
+mgcp behavior comedia-sdp-force disable
+!
+mgcp profile default
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ password 7 105E080A16
+ login
+ transport input none
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ exec-timeout 0 0
+ password 7 0014121517
+ login local
+ transport input all
+line vty 5 14
+ exec-timeout 0 0
+ password 7 0014121517
+ login local
+ transport input all
+!
+!
+!
+!
+!
+!
+end
