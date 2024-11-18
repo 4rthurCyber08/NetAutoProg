@@ -1,0 +1,13 @@
+@autoAP
+Conf t
+	hostname autoAP-m
+	dot11 ssid ccnaWifi-m
+		authentication open
+		authentication key-management wpa
+		wpa-psk ascii C1sc0123
+		guest-mode
+	int dot11Radio 0
+		no shut
+		channel 9
+		encryption mode ciphers tkip
+		ssid ccnaWifi-m
