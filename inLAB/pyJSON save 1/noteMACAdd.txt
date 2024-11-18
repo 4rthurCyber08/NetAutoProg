@@ -1,6 +1,0 @@
-MAC address
-
-Camera Fa0/6: 001a.0709.c268
-Camera Fa0/8: 001a.070a.27ed
-Ephone Fa0/5: ccd8.c1fb.163f
-Ephone Fa0/7: 8478.aced.5bb7
