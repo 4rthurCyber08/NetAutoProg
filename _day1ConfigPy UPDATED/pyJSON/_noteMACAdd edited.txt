@@ -1,8 +1,0 @@
-@coreBABA
-show mac address-table
-
-
-Camera Fa0/6: 001a.0709.c644
-Camera Fa0/8: 001a.0706.c2c5
-Ephone Fa0/5: ccd8.c1fb.0953
-Ephone Fa0/7: ccd8.c1fb.10dd
