@@ -1,7 +1,7 @@
 {
     "coreBaba": {
         "device_type": "cisco_ios",
-        "host": "10.61.1.4",
+        "host": "10._.1.4",
         "port": 22,
         "username": "admin",
         "password": "pass",
@@ -10,7 +10,7 @@
 
     "callManager": {
         "device_type": "cisco_ios",
-        "host": "10.61.100.8",
+        "host": "10._.100.8",
         "port": 22,
         "username": "admin",
         "password": "pass",
@@ -19,7 +19,7 @@
 
     "edgeRouter": {
         "device_type": "cisco_ios",
-        "host": "10.61.61.1",
+        "host": "10._._.1",
         "port": 22,
         "username": "admin",
         "password": "pass",
