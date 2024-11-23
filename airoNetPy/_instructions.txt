@@ -27,5 +27,6 @@ Step 2 - Create a JSON file named "autoAP.json" containing ConnectHandler argume
     - wifi-pass
     - channel
     - encr-mod
+    - vlan
 
 Step 3 - Run "autowifi.py"
