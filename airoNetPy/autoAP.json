@@ -14,6 +14,7 @@
         "key-man": "wpa",
         "wifi-pass": "C1sc0123",
         "channel": "9",
-        "encr-mod": "tkip"
+        "encr-mod": "tkip",
+        "vlan": "m"
     }
 }
