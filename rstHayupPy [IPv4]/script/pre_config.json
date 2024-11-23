@@ -59,7 +59,7 @@
 
     "d1_config": {
         "hostname": "D1_py",
-        "lo5": "10.10.0.0",
+        "r_id": "10.10.0.0",
         "dhcp_pool": "d1POOL",
         "gateway": "10.2.1.1",
         "excip_01": "10.2.1.1 10.2.1.100",
@@ -68,7 +68,7 @@
 
     "d2_config": {
         "hostname": "D2_py",
-        "lo5": "10.20.0.0",
+        "r_id": "10.20.0.0",
         "dhcp_pool": "d2POOL",
         "gateway": "10.2.1.2",
         "excip_01": "10.2.1.1 10.2.1.199",
@@ -77,22 +77,22 @@
 
     "a1_config": {
         "hostname": "A1_py",
-        "lo5": "10.10.1.0"
+        "r_id": "10.10.1.0"
     },
 
     "a2_config": {
         "hostname": "A2_py",
-        "lo5": "10.10.2.0"
+        "r_id": "10.10.2.0"
     },
 
     "p1_config": {
         "hostname": "P1_py",
-        "lo5": "10.10.1.1"
+        "r_id": "10.10.1.1"
     },
 
     "p2_config": {
         "hostname": "P2_py",
-        "lo5": "10.10.2.1"
+        "r_id": "10.10.2.1"
     },
 
     "s1_config": {
@@ -111,22 +111,22 @@
 
     "r4_config": {
         "hostname": "R4_py",
-        "lo5": "4.4.4.4"
+        "r_id": "4.4.4.4"
     },
 
     "r3_config": {
         "hostname": "R3_py",
-        "lo5": "3.3.3.3"
+        "r_id": "3.3.3.3"
     },
 
     "r2_config": {
         "hostname": "R2_py",
-        "lo5": "2.2.2.2"
+        "r_id": "2.2.2.2"
     },
 
     "r1_config": {
         "hostname": "R1_py",
-        "lo5": "1.1.1.1",
+        "r_id": "1.1.1.1",
         "neigh_209": "neighbor 209.9.9.3 remote-as 3",
         "neigh_207": "neighbor 207.7.7.2 remote-as 2",
         "neigh_208": "neighbor 208.8.8.4 remote-as 45"
