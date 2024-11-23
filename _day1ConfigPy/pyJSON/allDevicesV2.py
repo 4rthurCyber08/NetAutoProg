@@ -163,7 +163,7 @@ with open('deviceConfigs.json', 'r') as file:
 for primKey in deviceConfigs:
     for innerKey in deviceConfigs[primKey]:
         mValue = deviceConfigs[primKey][innerKey]
-        updateValue = re.sub(r'_', '69', mValue)
+        updateValue = re.sub(r'_', monitorNumber, mValue)
         
         if innerKey != 'cam6_mac' and innerKey != 'cam8_mac' and innerKey != 'phone1_mac' and innerKey != 'phone2_mac':
             deviceConfigs[primKey][innerKey] = updateValue
@@ -528,7 +528,7 @@ for i in list_of_callers:
     static_route_class = [
         f'ip route 10.{i}.0.0 255.255.0.0 200.0.0.{i} 120',
     ]
-    configStatic.append(static_route_class)
+    configStatic.append(static_route_class[0])
 
 # -set ospf
 configOSPFEDGE = [
