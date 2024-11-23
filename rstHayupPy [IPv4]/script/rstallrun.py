@@ -129,6 +129,7 @@ i1_commands = [
     f'network {bgp["net_208"]} mask {ip["mask_24"]}',
     f'network {bgp["net_0"]}',
     'exit',
+    'exit',
     
     #fake internet
     f'ip route {bgp["fake_net"]} 208.8.8.1',
@@ -162,6 +163,7 @@ i2_commands = [
     f'network {bgp["net_207"]} mask {ip["mask_24"]}',
     f'network {bgp["net_0"]}',
     'exit',
+    'exit',
     
     #fake internet
     f'ip route {bgp["fake_net"]} 207.7.7.1',
@@ -191,6 +193,7 @@ i3_commands = [
     f'network {bgp["net_32"]} mask {ip["mask_24"]}',
     f'network {bgp["net_209"]} mask {ip["mask_24"]}',
     f'network {bgp["net_0"]}',
+    'exit',
     'exit',
     
     #fake internet
@@ -222,34 +225,34 @@ i4_commands = [
     f'network {bgp["net_25"]} mask {ip["mask_24"]}',
     f'network {bgp["net_45"]} mask {ip["mask_24"]}',
     'exit',
+    'exit',
     
     #fake google
-    'interface loopback 5',
+    'interface loopback 8',
     f'ip address {i4_config["google"]} {ip["mask_32"]}',
     f'description Google',
-    'exit',
     'exit'
 ]
 
 r1_commands = [
     f'hostname {r1_config["hostname"]}',
     
-    'interface loopback 5',
-    f'ip address {r1_config["lo5"]} {ip["mask_32"]}',
+    'interface loopback 1',
+    f'ip address {r1_config["r_id"]} {ip["mask_32"]}',
     f'description {ip["int_desc"]}',
     'exit',
     
     #ospf config
     f'router ospf {ospf["process_id"]}',
-    f'router-id {r1_config["lo5"]}',
+    f'router-id {r1_config["r_id"]}',
     f'network {ospf["net_1_0"]}',
-    f'network {r1_config["lo5"]} 0.0.0.0 area 12',
+    f'network {r1_config["r_id"]} 0.0.0.0 area 12',
     f'{ospf["redis_bgp"]}',
     'exit',
     
     #bgp config
     f'router {bgp["as_1"]}',
-    f'bgp router-id {r1_config["lo5"]}',
+    f'bgp router-id {r1_config["r_id"]}',
     'bgp log-neighbor-changes',
     f'{r1_config["neigh_209"]}',
     f'{r1_config["neigh_207"]}',
@@ -258,7 +261,7 @@ r1_commands = [
     f'{bgp["neigh_on"]}',
     f'{bgp["neigh_on"]}',
     f'{bgp["neigh_on"]}',
-    f'network {r1_config["lo5"]} mask {ip["mask_32"]}',
+    f'network {r1_config["r_id"]} mask {ip["mask_32"]}',
     f'network {bgp["net_209"]} mask {ip["mask_24"]}',
     f'network {bgp["net_207"]} mask {ip["mask_24"]}',
     f'network {bgp["net_208"]} mask {ip["mask_24"]}',
@@ -270,16 +273,16 @@ r1_commands = [
 r2_commands = [
     f'hostname {r2_config["hostname"]}',
     
-    'interface loopback 5',
-    f'ip address {r2_config["lo5"]} {ip["mask_32"]}',
+    'interface loopback 2',
+    f'ip address {r2_config["r_id"]} {ip["mask_32"]}',
     f'description {ip["int_desc"]}',
     
     #ospf config
     f'router ospf {ospf["process_id"]}',
-    f'router-id {r2_config["lo5"]}',
+    f'router-id {r2_config["r_id"]}',
     f'network {ospf["net_1_4"]}',
     f'network {ospf["net_1_0"]}',
-    f'network {r2_config["lo5"]} 0.0.0.0 area 0',
+    f'network {r2_config["r_id"]} 0.0.0.0 area 0',
     'exit',
     'exit'
 ]
@@ -287,44 +290,42 @@ r2_commands = [
 r3_commands = [
     f'hostname {r3_config["hostname"]}',
     
-    'interface loopback 5',
-    f'ip address {r3_config["lo5"]} {ip["mask_32"]}',
+    'interface loopback 3',
+    f'ip address {r3_config["r_id"]} {ip["mask_32"]}',
     f'description {ip["int_desc"]}',
     
     #ospf config
     f'router ospf {ospf["process_id"]}',
-    f'router-id {r3_config["lo5"]}',
+    f'router-id {r3_config["r_id"]}',
     f'network {ospf["net_1_8"]}',
     f'network {ospf["net_1_4"]}',
-    f'network {r3_config["lo5"]} 0.0.0.0 area 0',
+    f'network {r3_config["r_id"]} 0.0.0.0 area 0',
     'exit',
     'exit'
 ]
 r4_commands = [
     f'hostname {r4_config["hostname"]}',
     
-    #just an indication that it was configured through python
-    'interface loopback 5',
-    f'ip address {r4_config["lo5"]} {ip["mask_32"]}',
+    'interface loopback 4',
+    f'ip address {r4_config["r_id"]} {ip["mask_32"]}',
     f'description {ip["int_desc"]}',
     
     #eigrp config
     f'router eigrp {eigrp["as100"]}',
-    f'eigrp router-id {r4_config["lo5"]}',
+    f'eigrp router-id {r4_config["r_id"]}',
     'no auto-summary',
     f'network {eigrp["net_4_4"]}',
     f'network {eigrp["net_4_8"]}',
-    f'network {r4_config["lo5"]} 0.0.0.0',
+    f'network {r4_config["r_id"]} 0.0.0.0',
     f'{eigrp["redis_ospf_1"]}',
     'exit',
     
     #ospf config
     f'router ospf {ospf["process_id"]}',
-    f'router-id {r4_config["lo5"]}',
+    f'router-id {r4_config["r_id"]}',
     f'network {ospf["net_1_8"]}',
-    f'network {r4_config["lo5"]} 0.0.0.0 area 34',
+    f'network {r4_config["r_id"]} 0.0.0.0 area 34',
     f'{ospf["redis_eigrp_100"]}',
-    'exit',
     'exit'
 ]
 
@@ -343,21 +344,15 @@ d1_commands = [
     f'default-router {d1_config["gateway"]}',
     'exit',
     
-    #just an indication that it was configured through python
-    'interface loopback 5',
-    f'ip address {d1_config["lo5"]} {ip["mask_32"]}',
-    f'description {ip["int_desc"]}',
-    
     #eigrp config
     f'router {eigrp["named-eigrp"]}',
     f'address-family ipv4 unicast autonomous-system {eigrp["as100"]}',
-    f'eigrp router-id {d1_config["lo5"]}',
+    f'eigrp router-id {d1_config["r_id"]}',
     f'network {eigrp["net_4_4"]}',
     f'network {eigrp["net_1_0"]}',
     f'network {eigrp["net_2_0"]}',
     f'network {eigrp["net_v200"]}',
-    f'network {d1_config["lo5"]} 0.0.0.0',
-    'exit',
+    f'network {d1_config["r_id"]} 0.0.0.0',
     'exit',
     'exit'
 ]
@@ -377,21 +372,15 @@ d2_commands = [
     f'default-router {d2_config["gateway"]}',
     'exit',
     
-    #just an indication that it was configured through python
-    'interface loopback 5',
-    f'ip address {d2_config["lo5"]} {ip["mask_32"]}',
-    f'description {ip["int_desc"]}',
-    
     #eigrp config
     f'router {eigrp["named-eigrp"]}',
     f'address-family ipv4 unicast autonomous-system {eigrp["as100"]}',
-    f'eigrp router-id {d2_config["lo5"]}',
+    f'eigrp router-id {d2_config["r_id"]}',
     f'network {eigrp["net_4_8"]}',
     f'network {eigrp["net_1_0"]}',
     f'network {eigrp["net_2_0"]}',
     f'network {eigrp["net_v200"]}',
-    f'network {d2_config["lo5"]} 0.0.0.0',
-    'exit',
+    f'network {d2_config["r_id"]} 0.0.0.0',
     'exit',
     'exit'
 ]
@@ -402,11 +391,6 @@ a1_commands = [
     'switchport mode access',
     'switchport access vlan 10',
     'exit',
-    
-    #just an indication that it was configured through python
-    'interface loopback 5',
-    f'ip address {a1_config["lo5"]} {ip["mask_32"]}',
-    f'description {ip["int_desc"]}',
     
     f'ip route {ip["def_route"]} {ip["def_129"]} 1',
     f'ip route {ip["def_route"]} {ip["def_130"]} 2',
@@ -420,11 +404,6 @@ a2_commands = [
     'switchport access vlan 10',
     'exit',
     
-    #just an indication that it was configured through python
-    'interface loopback 5',
-    f'ip address {a2_config["lo5"]} {ip["mask_32"]}',
-    f'description {ip["int_desc"]}',
-    
     f'ip route {ip["def_route"]} {ip["def_130"]} 1',
     f'ip route {ip["def_route"]} {ip["def_129"]} 2',
     'exit'
@@ -437,6 +416,7 @@ s1_commands = [
     'no shutdown',
     f'ip add {s1_config["int_1_0"]} {ip["mask_27"]}',
     'exit',
+    
     f'ip route {ip["def_route"]} {s1_config["gateway_1"]}',
     f'ip route {ip["def_route"]} {s1_config["gateway_2"]} 2'
 ]
@@ -448,6 +428,7 @@ s2_commands = [
     'no shutdown',
     f'ip add {s2_config["int_1_0"]} {ip["mask_24"]}',
     'exit',
+    
     f'ip route {ip["def_route"]} {s2_config["gateway_1"]}',
     f'ip route {ip["def_route"]} {s2_config["gateway_2"]} 2'
 ]
@@ -455,14 +436,9 @@ s2_commands = [
 p1_commands = [
     f'hostname {p1_config["hostname"]}',
     
-    #just an indication that it was configured through python
-    'interface loopback 5',
-    f'ip address {p1_config["lo5"]} {ip["mask_32"]}',
-    f'description {ip["int_desc"]}',
-    
-    
     f'ip route {ip["def_route"]} {ip["def_1_1"]} 1',
     f'ip route {ip["def_route"]} {ip["def_1_2"]} 2',
+    
     'interface ethernet 0/0',
     'ip add dhcp',
     'exit'
@@ -470,11 +446,6 @@ p1_commands = [
 
 p2_commands = [
     f'hostname {p2_config["hostname"]}',
-    
-    #just an indication that it was configured through python
-    'interface loopback 5',
-    f'ip address {p2_config["lo5"]} {ip["mask_32"]}',
-    f'description {ip["int_desc"]}',
     
     f'ip route {ip["def_route"]} {ip["def_1_2"]} 1',
     f'ip route {ip["def_route"]} {ip["def_1_1"]} 2',
