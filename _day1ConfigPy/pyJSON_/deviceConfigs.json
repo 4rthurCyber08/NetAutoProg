@@ -1,0 +1,131 @@
+{
+    "class_m": {
+        "monitors_occupied": "11,12,21,22,31,32,41,42,51,52,61,62,71,72,81,82"
+    },
+
+    "ip_mask": {
+        "mask_16": "255.255.0.0",
+        "mask_24": "255.255.255.0",
+        "mask_32": "255.255.255.255",
+        "wild_16": "0.0.255.255",
+        "wild_24": "0.0.0.255",
+        "wild_32": "0.0.0.0"
+    },
+
+    "ospf_1": {
+        "proc_id": "1",
+        "cbaba_id": "10._._.4",
+        "cbaba_route_1": "10._.0.0",
+        "cucm_id": "10._.100.8",
+        "cucm_route_1": "10._.100.0",
+        "edge_id": "_.0.0.1",
+        "edge_route_1": "200.0.0.0",
+        "edge_route_2": "10._._.0",
+        "edge_route_3": "_.0.0.1",
+        "area": "area 0",
+        "p2p": "point-to-point"
+    },
+
+    "cbaba_set": {
+        "cons0_pass": "pass",
+        "description": "-configuredThroughPython",
+        "g01_ip": "10._._.4",
+        "v10_ip": "10._.10.4",
+        "v50_ip": "10._.50.4",
+        "v100_ip": "10._.100.4",
+        "v1_name": "MGMTVLAN",
+        "v10_name": "WIFIVLAN",
+        "v50_name": "CCTVVLAN",
+        "v100_name": "VOICEVLAN",
+        "gateway": "10._._.1"
+    },
+
+    "dhcp": {
+        "reserve_ip_v1": "10._.1.1 10._.1.100",
+        "reserve_ip_v10": "10._.10.1 10._.10.100",
+        "reserve_ip_v50": "10._.50.1 10._.50.100",
+        "reserve_ip_v100": "10._.100.1 10._.100.100",
+        "data_net": "10._.1.0",
+        "data_gateway": "10._.1.4",
+        "data_pool": "POOLDATA",
+        "data_domain": "MGMTDATA.COM",
+        "wifi_net": "10._.10.0",
+        "wifi_gateway": "10._.10.4",
+        "wifi_pool": "POOLWIFI",
+        "wifi_domain": "WIFIDATA.COM",
+        "cctv_net": "10._.50.0",
+        "cctv_gateway": "10._.50.4",
+        "cctv_pool": "POOLCCTV",
+        "cctv_domain": "CCTVDATA.COM",
+        "voice_net": "10._.100.0",
+        "voice_gateway": "10._.100.4",
+        "voice_pool": "POOLVOICE",
+        "voice_domain": "VOICEDATA.COM",
+        "dns": "10._.1.10",
+        "cam6_pool": "CAMERA6",
+        "cam6_ip": "10._.50.6",
+        "cam6_mac": "6666.6666.6666",
+        "cam8_pool": "CAMERA8",
+        "cam8_ip": "10._.50.8",
+        "cam8_mac": "8888.8888.8888"
+    },
+
+    "sw_port": {
+        "fa2_ac_vlan": "vlan 10",
+        "fa3_ac_vlan": "vlan 100",
+        "fa4_ac_vlan": "vlan 10",
+        "fa5_ac_vlan": "vlan 1",
+        "fa5_vo_vlan": "vlan 100",
+        "fa6_ac_vlan": "vlan 50",
+        "fa7_ac_vlan": "vlan 1",
+        "fa7_vo_vlan": "vlan 100",
+        "fa8_ac_vlan": "vlan 50",
+        "qos_ephone": "mls qos trust device cisco-phone"
+    },
+
+    "cucm_set": {
+        "cons0_pass": "pass",
+        "description": "-configuredThroughPython",
+        "gateway": "10._.100.4"
+    },
+
+    "dial_peer": {
+        "vo_pat_000": "_00",
+        "vo_pat_001": "_01",
+        "vo_pat_002": "_02",
+        "vo_pat_003": "_03"
+    },
+
+    "vo_ip": {
+        "source_add": "10._.100.8",
+        "dn_1": "_11",
+        "dn_2": "_22",
+        "dn_3": "_33",
+        "dn_4": "_44",
+        "dn_5": "_55",
+        "dn_6": "_66",
+        "dn_7": "_77",
+        "dn_8": "_88",
+        "phone1_mac": "1111.1111.1111",
+        "phone2_mac": "2222.2222.2222",
+        "type": "8945",
+        "e1_btn": "1:1 2:2 3:3 4:4",
+        "e2_btn": "1:5 2:6 3:7 4:8",
+        "vid_prot": "h323",
+        "tele_codec": "g711ULAW",
+        "ivrs_peer": "69",
+        "ivrs_pat": "_69",
+        "hunt1": "_00",
+        "hunt2": "_01",
+        "hunt3": "_77",
+        "hunt4": "_33"
+    },
+
+    "edge_set": {
+        "cons0_pass": "pass",
+        "g001_ip": "200.0.0._",
+        "lo0_ip": "_.0.0.1",
+        "lan_route": "10._.0.0",
+        "lan_gateway": "10._._.4"
+    }
+}
