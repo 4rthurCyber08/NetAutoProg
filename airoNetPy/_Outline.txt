@@ -1,0 +1,229 @@
+Exam Topics: 
+	-Programming Network via Python and JSON
+		-Explain how automation impacts network management
+		-Compare traditional networks with controller-based networking
+		-Recognize components of JSON-encoded data
+	-Wireless Principles
+		-Nonoverlapping Wi-Fi channels
+		-SSID
+		-RF
+
+--------------------
+
+!#-IMPORT airoNetPy REPOSITORY
+
+@cmd
+cd desktop/studentFolder
+git clone https://github.com/4rthurCyber08/airoNetPy
+
+@github
+Top right of page -> Click '+' button -> import repository
+https://github.com/4rthurCyber08/airoNetPy
+
+!#-Install wifiAnalyzer or fing
+
+!#-Programmability
+
+	-Scalability issue of traditional networking
+		-Network growth (more devices, services, features, etc) make networks more complex to manage.
+		
+	-Network programmability refers to a set of tools for deploying, managing, and troubleshooting network devices. 
+		
+		Automation - Accomplishing repeatable tasks without human intervention
+		Orchestration (SD-Networking : Meraki) - Combining a series of tasks to accomplish a process or workflow
+	
+		Automation and orchestration bring many benefits to an organization.
+			-Time and cost savings: Because automation reduces your infrastructure’s complexities, fewer hours are required for configuring, provisioning, and managing the network.
+			-Fewer errors - By removing the chance for human errors, companies can offer and deliver a higher level of services with more consistency.
+			-Agile network - Automation enables companies to develop operational models that improve the time-to-market. They can add new services and test new applications, resulting in greater competitiveness and more profit.
+			-Greater insight and network control - Automation helps IT operations become more responsive to change through analytics. You gain more visibility into the network to control and adapt it as needed.
+			-Increase in strategic workforce - By utilizing automation, companies can increase productivity, allowing them to drive business improvements and innovation and create new job opportunities.
+
+!#-Python Data Types
+	-Create a python file: 'dataTypes.py'
+	
+	Variables- not defined unlike other languages, cannot start with a number, case sensitive, and cannot be a python keyword.
+		Java
+			int myNumVar;
+			myNumVar = 25;
+			
+			String myStringVar;
+			myStringVar = 'I am a string'
+		
+		Python
+			numVar = 1
+			stringVar = 'string'
+	
+	-Python Data types
+		String = 'String'
+		Integers = 1
+		Floats = 1.01
+		bool = True False
+		list = [item1, item2]
+		dictionary = {key:value}
+		set = {item1, item2}
+	
+		type()
+	
+	-List and Dictionary Data type
+	
+		@dataTypes.py
+		#List Index
+		no3 = 3
+		item5 = 'five'
+		myList = [
+			'First Item', 
+			'Second Item', 
+			'This is number: ' + str(no3), 
+			4, 
+			'This is item number: ' + item5, 
+			Switch, 
+			Router, 
+			Firewall,
+		]
+		
+		output = myList[2] 
+		
+		print(output)
+		
+		#Dictionary Key value
+		myDict = {
+			'firstName': 'James',
+			'lastName': 'Martinez',
+			'age': 25,
+			'birthDate': {
+				'year': '1990',
+				'month': 'september',
+				'day': '5'
+			}
+		}
+		
+		myFstring = f'My name is {myDict['firstName']} {myDict['lastName']}. I am {myDict['age']} and I was born on {myDict['birthDate']['month']} {myDict['birthDate']['day']}, {myDict['birthDate']['year']}'
+	
+		print(myFstring)
+	
+	-Function with *args and **kwargs
+		def happyBirthday(firstname, lastname):
+			print(f'Happy Birthday to {myDict['firstName']} {myDict['lastName']}!!')
+			print('We wish you well')
+		
+		happyBirthday()
+		
+		def happyBirthday(*args, **kwargs):
+			print(f'Happy Birthday to {myDict['firstName']} {myDict['lastName']}!!')
+			print('We wish you well')
+		
+		happyBirthday()
+
+!#-Netmiko library
+	-establish connection to a device
+		-ping the device
+		-create new python file 'testConnect.py'
+			@testConnect.py
+				import Netmiko
+				from Netmiko import ConnectHandler
+				
+			Step 1 - Connect to device - vty lines login
+				device_type = cisco_ios_telnet
+				host = 10.m.1.4
+				password = pass
+				secret = pass
+				port = 23
+			
+				accessCLI = ConnectHandler(device_type, host, password, secret)
+				
+				---or---
+				
+				coreBaba_info = {
+					'device_type': 'cisco_ios_telnet',
+					'host': '10.m.1.4',
+					'password': 'pass',
+					'secret': 'pass',
+					'port': '23'
+				}
+				accessCLI = ConnectHandler(**coreBaba_info)
+				accessCLI.enable()
+				output = accessCLI.send_command('sh ip int br')
+				
+				print(output)
+				
+	-send a config to a device
+		commands = [
+			'int loopback 69',
+			'ip add 1.1.1.1 255.255.255.255',
+			'desc configured via python',
+			'exit'
+		]
+		
+		output = accessCLI.send_config_set(commands)
+		
+		print(output)
+		
+	
+	-close connection
+		accessCLI.disconnect()
+
+!#-JSON
+	-Create JSON file: deviceInfo.json
+	-JSON Data types vs Python Data types
+		PY			=	JSON
+		------------------------
+		string 		= 	string
+		integers 	= 	integers
+		boolean 	= 	boolean
+		list 		= 	array
+		dictionary 	= 	object
+
+	@deviceInfo.json
+	{
+		"coreBaba": {
+			"device_type": "cisco_ios",
+			"host": "10.m.1.4",
+			"password": "pass",
+			"secret": "pass"
+		}
+	}
+	
+	-go back to python file - read the json file
+	@python
+	import json
+	
+	with open('deviceInfo.json') as file:
+		device_info = json.load(file)
+	
+	print(deviceInfo)
+	
+	--reference config via JSON--
+	@deviceInfo.json
+	{
+		"coreBaba": {
+			"device_type": "cisco_ios",
+			"host": "10.m.1.4",
+			"password": "pass",
+			"secret": "pass"
+		},
+		
+		"coreBaba_config": {
+			"lo_num": "69",
+			"lo_ip": "1.1.1.1",
+			"mask_32": "255.255.255.255",
+			"lo_desc": "configured via python"
+		}
+	}
+	
+	-extract JSON keys-
+	baba_info = device_info['coreBaba']
+	baba_config = device_info['coreBaba_config']
+	
+	print(baba_info)
+	
+	
+	-update configs
+		commands = [
+			f'int loopback {baba_config["lo_num"]}',
+			f'ip add {baba_config["lo_ip"]} {baba_config["mask_32"]}',
+			f'desc {baba_config["lo_desc"]}',
+			'exit'
+		]
+	
+!#-autowifi.py - discuss and create a autoAP.json
