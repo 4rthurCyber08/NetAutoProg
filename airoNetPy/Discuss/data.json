@@ -1,0 +1,13 @@
+{
+    "key":"value",
+    
+    "Firstname": "Arthur",
+    "Lastname": "James",
+    "Age": "23",
+    "Likes": ["Video Games", "Horror Movies"],
+    "Birthdate": {
+        "Month": "August",
+        "Day": 20,
+        "Year": "1997"
+    }
+}
