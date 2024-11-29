@@ -1,0 +1,273 @@
+!#-Verify connection to the autonomous access point
+
+    @cmd
+    ping 10.#m0n1t0r#.10.3
+
+--------------------
+
+!#-Import Github repository
+
+	@cmd
+	cd desktop/studentFolder
+	git clone https://github.com/4rthurCyber08/airoNetPy
+
+	@github
+	Top right of page -> Click '+' button -> import repository
+
+	https://github.com/4rthurCyber08/airoNetPy
+
+
+!#-Install the mobile app wifiAnalyzer or Fing
+
+---------------------
+
+!#-Basic Automation
+
+	Why programming for network engineers?
+	
+	-Scalability issue of traditional networking
+		-Network growth (more devices, services, features, etc) make networks more complex to manage.
+		
+	-Network programmability refers to a set of tools for deploying, managing, and troubleshooting network devices. 
+		
+		Automation - Accomplishing repeatable tasks without human intervention
+		Orchestration (SD-Networking : Meraki) - Combining a series of tasks to accomplish a process or workflow
+	
+		Automation and orchestration bring many benefits to an organization.
+			-Time and cost savings: Because automation reduces your infrastructure’s complexities, fewer hours are required for configuring, provisioning, and managing the network.
+			-Fewer errors - By removing the chance for human errors, companies can offer and deliver a higher level of services with more consistency.
+			-Agile network - Automation enables companies to develop operational models that improve the time-to-market. They can add new services and test new applications, resulting in greater competitiveness and more profit.
+			-Greater insight and network control - Automation helps IT operations become more responsive to change through analytics. You gain more visibility into the network to control and adapt it as needed.
+			-Increase in strategic workforce - By utilizing automation, companies can increase productivity, allowing them to drive business improvements and innovation and create new job opportunities.
+
+!#-Python Data Types
+	-Create a python file: '_dataTypesPYTHON.py'
+	
+		Variables- not defined unlike other languages, cannot start with a number, case sensitive, and cannot be a python keyword.
+		Java
+			int myNumVar;
+			myNumVar = 25;
+			
+			String myStringVar;
+			myStringVar = 'I am a string'
+		
+		Python
+			numVar = 1
+			stringVar = 'string'
+	
+	-Python Data types
+		String = 	'String with Single Quotes'
+		String2 = 	"String with Double Quotes"
+		String3 = 	'''
+					Multiline String.
+					Multiline String.
+					Multiline String.
+					'''
+					
+		Integers = 	1
+		Floats = 	1.01
+		Boolean = 	True False
+		List = 		[item1, item2]
+		Dictionary = {key:value}
+		Set = 		{item1, item2}
+		None = 		None
+	
+		Use the type() function to identify the data type.
+		Use the print() function to print a value on the terminal
+	
+	-List and Dictionary Data type - List Indexing, String Concatination, and Dictionary[key], format string
+	
+		@'_dataTypesPYTHON.py
+		# list Indexing
+		no3 = 3
+		item5 = 'five'
+		myList = [
+			'First Item',
+			'Second Item',
+			'This is number: ' + str(no3),
+			4,
+			'This is item number: ' + item5
+		]
+		
+		output = myList[2] 
+		print(output)
+		
+		# dictionary Key value
+		myDict = {
+			'firstName': 'James',
+			'lastName': 'Martinez',
+			'age': 25,
+			'birthDate': {
+				'year': '1990',
+				'month': 'september',
+				'day': '5'
+			}
+		}
+		
+		myFstring = f'My name is {myDict['firstName']} {myDict['lastName']}. I am {myDict['age']} and I was born on {myDict['birthDate']['month']} {myDict['birthDate']['day']}, {myDict['birthDate']['year']}'
+	
+		print(myFstring)
+	
+	-Function with *args and **kwargs
+		def happyBirthday(firstname, lastname):
+			print(f'Happy Birthday to {myDict['firstName']} {myDict['lastName']}!!')
+			print('We wish you well')
+		
+		happyBirthday()
+		
+		def happyBirthday(*args, **kwargs):
+			print(f'Happy Birthday to {myDict['firstName']} {myDict['lastName']}!!')
+			print('We wish you well')
+		
+		happyBirthday()
+
+!#-JSON (JavaScript Object Notation) Data types
+	-Create a python file: '_dataTypesJSON.json'
+	
+	-JSON key:value pair and data types
+		@_dataTypesJSON.json
+		{
+			"myObject": {
+				"myString": "This is a string",
+				"escString": "This uses \" escape characters",
+				
+				"myNumberINT": 10,
+				"myNumberFLOAT": 10.0001,
+				"myBoolean": true,
+				"myArray": [
+					{
+						"ObjectINObject": {
+							"none": null
+						},
+						"ArrayINObject": [null, 1, "2"]
+					}
+				]
+			}
+		}
+
+!#-Read JSON files in python
+	-two methods: open, with open
+		file = open('file.json', 'r')
+		file.close()
+		#required to close the file
+		
+		with open('file.json', 'r') as file:
+			file.read()
+		# automatically closes out of indention
+	
+	@_dataTypesPYTHON.py
+	import json
+	with open('_dataTypesJSON.json', 'r') as file: 
+		filePy = json.load(file)
+		
+	print(filePy)
+
+
+!#-Python SSH Libraries: Paramiko-Netmiko
+	API (Application programming interface)
+	Agent-based automation
+		Needs to install an application (agent) on each device in order for the automation manager to send orders.
+			//The Automation Agent receives orders from the Automation Manager and issues commands that are based on the defined automation policy.//
+			
+			Ex. Puppet and CHEF
+		
+	Agentless automation
+		Agentless automation is easier to implement because it reuses existing management protocols. 
+		It has lower administrative costs since one, or at most several, central automation agents need to be deployed and managed.
+		
+			Ex. Ansible and Terraform
+			
+			For Terraform: https://developer.hashicorp.com/terraform/intro
+
+	More on Paramiko and Netmiko: https://codilime.com/blog/python-paramiko-and-netmiko-for-automation/
+	
+	-establish connection to the device
+		-ping the device
+		-create new python file 'testConnect.py'
+			@testConnect.py
+				import netmiko
+				from netmiko import ConnectHandler
+				
+				# step 1-provide device information
+				
+				device_type = cisco_ios_telnet
+				host = 10.m.1.4
+				password = pass
+				secret = pass
+				port = 23
+			
+				accessCLI = ConnectHandler(device_type, host, password, secret, port)
+				
+				---or---
+				
+				coreBaba_info = {
+					'device_type': 'cisco_ios_telnet',
+					'host': '10.m.1.4',
+					'password': 'pass',
+					'secret': 'pass',
+					'port': '23'
+				}
+				accessCLI = ConnectHandler(**coreBaba_info)
+				
+				accessCLI.enable()
+				output = accessCLI.send_command('sh ip int br')
+				
+				print(output)
+				
+	-send a config to a device
+		@testConnect.py
+		commands = [
+			'int loopback 69',
+			'ip add 1.1.1.1 255.255.255.255',
+			'desc configured via python',
+			'exit'
+		]
+		
+		output = accessCLI.send_config_set(commands)
+		
+		print(output)
+		
+	
+		#close connection
+		accessCLI.disconnect()
+	
+!#-Activity - autowifi
+	-Open autowifi.py
+	
+	-Create myWifi.json
+	
+	@myWifi.json
+	{
+		"aironetInfo": {
+			"device_type": "cisco_ios_telnet",
+			"host": "10.m.10.3",
+			"username": "admin",
+			"password": "pass",
+			"secret": "pass"
+		},
+
+		"aironetConfig": {
+			"hostname": "aironet-m",
+			"ssid": "11-welcomeToRivan",
+			"authentication": "open",
+			"key-man": "wpa",
+			"wifi-pass": "C1sc0123",
+			"channel": "9",
+			"encr-mod": "tkip",
+			"vlan": "m"
+		}
+	}
+	
+	-non-overlapping channel
+		Honeycomb assignment scheme
+		
+			11-(1)      12-(6)
+			21-(11)		22-(1)
+			31-(6)		32-(11)
+			41-(1)      42-(6)
+			51-(11)		52-(1)
+			61-(6)		62-(11)
+			71-(1)      72-(6)
+	
+
+!#-Activity - corebaba loopback
