@@ -410,7 +410,7 @@ configEphone = [
     f'type {tele["type"]}',
     f'button {tele["e2_btn"]}',
     'restart',
-    'end'
+    'exit'
 ]
 
 # -allow video calls
