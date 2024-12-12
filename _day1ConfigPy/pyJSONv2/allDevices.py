@@ -311,7 +311,7 @@ configEphone = [
     'type 8945',
     'button 1:5 2:6 3:7 4:8',
     'restart',
-    'end'
+    'exit'
 ]
 
 configVideo = [
