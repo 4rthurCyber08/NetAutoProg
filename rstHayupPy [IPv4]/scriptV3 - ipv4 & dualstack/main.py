@@ -217,6 +217,6 @@ if __name__ == '__main__':
     for process in process_list:
         process.join()
     
-    print(f'Configurations complete for : Clone of RSTallrun [{device_info['ip']}]')
+    print(f'Configurations complete for : Clone of RSTallrun [{device_info["ip"]}]')
     print(r'Please wait for BGP to build routes before pinging 8.8.8.8')
     input(r'Press Enter to close terminal.')
