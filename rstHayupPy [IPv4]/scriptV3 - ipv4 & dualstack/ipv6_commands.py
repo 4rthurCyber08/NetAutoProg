@@ -217,7 +217,7 @@ r1_commands = [
     
     'router bgp 1',
     'address-family ipv6 unicast',
-    'redistribute ospf 6 match internal external 1 external 2',
+    'redistribute ospf 6 match internal external 1 external 2 include-connected',
     'exit'
 ]
 
